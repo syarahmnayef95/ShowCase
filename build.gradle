@@ -1,0 +1,35 @@
+buildscript {
+    ext.kotlin_version = "1.5.0"
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.2.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.15.1'
+    }
+}
+
+allprojects {
+
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        jcenter {
+            url "http://jcenter.bintray.com/"
+        }
+        maven {url 'http://developer.huawei.com/repo/'}
+        maven { url "https://dl.bintray.com/drummer-aidan/maven" }
+        maven {
+            url "https://sdk.smartlook.com/android/release"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

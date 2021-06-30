@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="tooltipViewState"
+            type="com.trendyol.showcase.ui.tooltip.TooltipViewState" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:paddingTop="@dimen/showcase_padding_8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:paddingBottom="@dimen/showcase_padding_8dp"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewTopArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            app:tint="@color/white"
+            android:visibility="@{tooltipViewState.getTopArrowVisibility()}"
+            app:layout_constraintBottom_toTopOf="@id/card_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:srcCompat="@drawable/ic_arrow_up"
+            bind:arrowHorizontalPosition="@{tooltipViewState.arrowMargin}"
+            bind:arrowPercentage="@{tooltipViewState.arrowPercentage}" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/showcase_margin_20dp"
+            android:layout_marginEnd="@dimen/showcase_margin_20dp"
+            app:cardCornerRadius="@dimen/showcase_card_radius"
+            android:scaleX="-1"
+            app:cardElevation="10dp"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/imageViewBottomArrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageViewTopArrow">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@{tooltipViewState.backgroundColor}"
+                android:orientation="vertical"
+                android:padding="@dimen/showcase_padding_16dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewTooltipTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/cairo_bold"
+                    android:text="@{tooltipViewState.titleText}"
+                    android:textAlignment="textStart"
+                    android:textColor="#044CAC"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/imageViewTooltipClose"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="16sp"
+                    tools:text="lorem ipsum" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewTooltipDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/cairo_regular"
+                    android:text="@{tooltipViewState.descriptionText}"
+                    android:textAlignment="textStart"
+                    android:textColor="#3F5776"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewTooltipTitle"
+                    tools:text="lorem ipsum lorem ipsum lorem ipsum" />
+                <!--                android:visibility="@{tooltipViewState.getCloseButtonVisibility()}"-->
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageViewTooltipClose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/textViewTooltipTitle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_close"
+                    app:tint="@{tooltipViewState.closeButtonColor}" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:paddingTop="8dp"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintBottom_toBottomOf="@id/skipBtn"
+                    app:layout_constraintEnd_toStartOf="@+id/skipBtn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/skipBtn"
+                    app:tabBackground="@drawable/tab_pager_selector"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMode="fixed"
+
+                    app:tabGravity="center"
+                    tools:ignore="MissingConstraints" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/skipBtn"
+                    android:layout_width="86dp"
+                    android:layout_height="50dp"
+                    android:text="تخطي"
+                    android:layout_marginTop="30dp"
+                    android:visibility="invisible"
+                    android:fontFamily="@font/cairo_regular"
+                    android:textColor="#3F5776"
+                    android:background="@android:color/transparent"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/nextBtn"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTooltipDescription" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/nextBtn"
+                    android:layout_width="86dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="@dimen/showcase_padding_8dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="@dimen/showcase_padding_8dp"
+                    android:text="التالي"
+                    android:gravity="center"
+                    android:fontFamily="@font/cairo_bold"
+                    app:cornerRadius="5dp"
+                    android:background="@drawable/button_background"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTooltipDescription" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewBottomArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            app:tint="@color/white"
+            android:visibility="@{tooltipViewState.getBottomArrowVisibility()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_content"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:srcCompat="@drawable/ic_arrow_up"
+            android:scaleY="-1"
+            bind:arrowHorizontalPosition="@{tooltipViewState.arrowMargin}"
+            bind:arrowPercentage="@{tooltipViewState.arrowPercentage}" />
+
+<!--        <androidx.appcompat.widget.AppCompatImageView-->
+<!--            android:id="@+id/imageViewBottomArrow"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:elevation="10dp"-->
+<!--            android:visibility="@{tooltipViewState.getBottomArrowVisibility()}"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/card_content"-->
+<!--            app:srcCompat="@drawable/ic_arrow_down"-->
+<!--            app:tint="@color/white"-->
+<!--            bind:arrowHorizontalPosition="@{tooltipViewState.arrowMargin}"-->
+<!--            bind:arrowPercentage="@{tooltipViewState.arrowPercentage}" />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    app:tint="@{tooltipViewState.backgroundColor}"-->
+
+</layout>

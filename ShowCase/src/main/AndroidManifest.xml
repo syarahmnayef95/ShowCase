@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.trendyol.showcase">
+
+    <!-- to display showcaseview, this activity and its' style must be added -->
+    <application
+        android:supportsRtl="true"
+        >
+        <activity
+            android:name="com.trendyol.showcase.ui.showcase.ShowcaseActivity"
+            android:theme="@style/ShowcaseTransparentTheme" />
+    </application>
+
+</manifest>

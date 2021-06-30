@@ -1,0 +1,3 @@
+rootProject.name = "ShowCase"
+include ':app'
+include ':ShowCase'

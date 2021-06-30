@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'maven-publish'
+group = "com.github.syarahmnayef95"
 
 android {
     compileSdkVersion 29
@@ -46,9 +47,6 @@ dependencies {
 
 }
 
-repositories {
-    mavenCentral()
-}
 afterEvaluate {
 
     publishing {
@@ -57,7 +55,7 @@ afterEvaluate {
 
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.syarah'
+                groupId = 'com.github.syarahmnayef95'
                 artifactId = 'showcase'
                 version = '1.0.0'
             }

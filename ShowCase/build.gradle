@@ -4,13 +4,6 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'maven-publish'
 
-group = 'com.trendyol.showcase'
-
-ext {
-    GROUP_ID = 'com.trendyol'
-    ARTIFACT_ID = 'showcase'
-}
-
 android {
     compileSdkVersion 29
 
@@ -21,10 +14,6 @@ android {
         versionName "0.2"
 
         vectorDrawables.useSupportLibrary = true
-    }
-
-    compileOptions {
-        kotlinOptions.freeCompilerArgs += ['-module-name', "$GROUP_ID.$ARTIFACT_ID"]
     }
 
     dataBinding {
@@ -59,4 +48,19 @@ dependencies {
 
 repositories {
     mavenCentral()
+}
+afterEvaluate {
+
+    publishing {
+
+        publications {
+
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.syarah'
+                artifactId = 'showcase'
+                version = '1.0.0'
+            }
+        }
+    }
 }
